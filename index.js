@@ -1,16 +1,21 @@
 // TODO figure out how to make this just a lambda function or something, so I don't need a server...
 
+// packages
 const express = require('express')
 const morgan = require('morgan')
-const { wrap } = require('./middleware')
 const app = express()
 const parser = require('body-parser')
 const CronJob = require('cron').CronJob
+const tf = require('@tensorflow/tfjs')
+
+// imports
+const { wrap } = require('./middleware')
 const { alertTime, timezone } = require('./config').preferences
 const { participants, port } = require('./config')
 const { deleteImage, sendMessage } = require('./lib/messenger')
 const { addParticipant, updateKarma } = require('./lib/firebase')
 
+// middleware
 app.use(parser.urlencoded({ extended: false }))
 
 // TODO put participant logic in other file
@@ -37,6 +42,8 @@ new CronJob(alertTime, async () => {
 app.use(morgan('tiny'))
 
 app.get('/ping', wrap(async (req, res) => {
+    const catGifUrl = 'cat gif placeholder...sorry'
+    console.log(tf)
     return res.send(catGifUrl)
 }))
 
