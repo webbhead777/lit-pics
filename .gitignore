@@ -1,5 +1,7 @@
 .env
 config.json
+images/*
+.DS_Store
 
 # Logs
 logs

@@ -6,7 +6,6 @@ const morgan = require('morgan')
 const app = express()
 const parser = require('body-parser')
 const CronJob = require('cron').CronJob
-const tf = require('@tensorflow/tfjs')
 
 // imports
 const { wrap } = require('./middleware')
@@ -14,6 +13,7 @@ const { alertTime, timezone } = require('./config').preferences
 const { participants, port } = require('./config')
 const { deleteImage, sendMessage } = require('./lib/messenger')
 const { addParticipant, updateKarma } = require('./lib/firebase')
+const { trainModel } = require('./lib/tensorflow')
 
 // middleware
 app.use(parser.urlencoded({ extended: false }))
@@ -43,8 +43,7 @@ app.use(morgan('tiny'))
 
 app.get('/ping', wrap(async (req, res) => {
     const catGifUrl = 'cat gif placeholder...sorry'
-    console.log(tf)
-    return res.send(catGifUrl)
+    return res.send(trainModel())
 }))
 
 app.post('/incoming', wrap(async (req, res) => {
