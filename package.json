@@ -16,7 +16,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node .",
-    "dev": "nodemon --inspect . --ignore ./config.json"
+    "dev": "nodemon --inspect . --ignore ./config.json",
+    "heroku": "heroku run bash"
   },
   "repository": {
     "type": "git",
