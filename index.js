@@ -58,7 +58,7 @@ app.post('/incoming', wrap(async (req, res) => {
         await sendMessage(prevParticipant.number, { body: `You got the thumbs up on this beauty.` })
     }
 
-    return res.status(200).end()
+    return res.status(200).send('boi we ouchere')
 }))
 
 app.use(async (err, req, res, next) => {
